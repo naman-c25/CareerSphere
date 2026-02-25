@@ -5,7 +5,13 @@ import ConnectionRequest from "../models/connections.model.js";
 import crypto from "crypto";
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import mongoose from "mongoose";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const UPLOADS_DIR = path.join(__dirname, "../uploads");
 
 export const activeCheck = async (req, res) => {
   return res.status(200).json({ message: "Running" });
@@ -14,14 +20,15 @@ export const activeCheck = async (req, res) => {
 export const convertUserDataTOPDF = async (userData) => {
   const doc = new PDFDocument();
 
+  if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
   const outputPath = crypto.randomBytes(32).toString("hex") + ".pdf";
-  const stream = fs.createWriteStream("uploads/" + outputPath);
+  const stream = fs.createWriteStream(path.join(UPLOADS_DIR, outputPath));
 
   doc.pipe(stream);
 
   if (userData.userId.profilePicture && userData.userId.profilePicture !== "default.jpg") {
     try {
-      doc.image(`uploads/${userData.userId.profilePicture}`, { align: "center", width: 100 });
+      doc.image(path.join(UPLOADS_DIR, userData.userId.profilePicture), { align: "center", width: 100 });
     } catch (_) {}
   }
 
@@ -231,7 +238,7 @@ export const downloadProfile = async (req, res) => {
 
     const userProfile = await Profile.findOne({ userId: user_id }).populate(
       "userId",
-      "username, name, email, profilePicture",
+      "username name email profilePicture"
     );
 
     let outputPath = await convertUserDataTOPDF(userProfile);
