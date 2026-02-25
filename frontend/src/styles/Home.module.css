@@ -1,0 +1,78 @@
+.container {
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 1.2rem 2rem;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  padding-inline: 4rem;
+  height: 88vh;
+}
+
+.mainContainer_left {
+  flex: 0.55;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.mainContainer_left > p:nth-child(1) {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.mainContainer_left > p:nth-child(2) {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.joinBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7c3aed;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  width: fit-content;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.joinBtn:hover {
+  background-color: #6d28d9;
+  transform: translateY(-1px);
+}
+
+.joinBtn p {
+  margin: 0;
+  color: #ffffff;
+}
+
+.mainContainer_right {
+  flex: 0.45;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer_right img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}

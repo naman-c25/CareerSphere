@@ -1,0 +1,172 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 2rem;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.brand {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  cursor: pointer;
+  letter-spacing: -0.3px;
+  flex-shrink: 0;
+}
+
+.brand:hover {
+  color: #1e40af;
+}
+
+/* Logged-in nav links */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navLink {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748b;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  background-color: #f1f5f9;
+  color: #1e3a8a;
+}
+
+.activeLink {
+  color: #1e3a8a;
+  background-color: #eff6ff;
+  font-weight: 600;
+}
+
+/* Right side */
+.navRight {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.profileBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.profileBtn:hover {
+  background: #f1f5f9;
+}
+
+.avatarCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1e3a8a;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.chevron {
+  font-size: 0.65rem;
+  color: #64748b;
+}
+
+/* Dropdown */
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  min-width: 160px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  z-index: 300;
+}
+
+.dropdownItem {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  color: #374151;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dropdownItem:hover {
+  background: #f8fafc;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 0.1rem 0;
+}
+
+.dropdownLogout {
+  color: #ef4444;
+}
+
+.dropdownLogout:hover {
+  background: #fef2f2;
+}
+
+/* Not logged in */
+.loginBtn {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #1e3a8a;
+  padding: 0.45rem 1.3rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.15s;
+}
+
+.loginBtn:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+.pageContent {
+  min-height: calc(100vh - 56px);
+  background-color: #f1f5f9;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .navLinks {
+    display: none;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+  }
+}

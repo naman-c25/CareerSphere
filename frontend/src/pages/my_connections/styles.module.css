@@ -1,0 +1,348 @@
+/* ========================
+   MY CONNECTIONS PAGE
+======================== */
+.connectionsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.2rem;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.pageHeader {
+  text-align: center;
+}
+
+.pageTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.pageSubtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0.3rem 0 0;
+}
+
+/* Toasts */
+.successToast {
+  background: #10b981;
+  color: #ffffff;
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.errorToast {
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  padding: 0.65rem 1.2rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Stats Bar */
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+
+.statCard {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 1.1rem;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.statNum {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e3a8a;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  padding: 0.4rem;
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #64748b;
+  background: none;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.tab:hover {
+  background: #f1f5f9;
+}
+
+.activeTab {
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.badge {
+  background: #ef4444;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 50px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Tab Content */
+.tabContent {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 1.2rem;
+  min-height: 300px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+/* Card Grid */
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Connection Card */
+.connectionCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #f1f5f9;
+  background: #f8fafc;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.connectionCard:hover {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.cardAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: #dbeafe;
+  transition: transform 0.15s;
+}
+
+.cardAvatar:hover {
+  transform: scale(1.05);
+}
+
+.cardInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.15s;
+}
+
+.cardName:hover {
+  color: #1e3a8a;
+}
+
+.cardUsername {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin: 0.1rem 0 0;
+}
+
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.acceptBtn {
+  padding: 0.45rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: none;
+  background: #1e3a8a;
+  color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.acceptBtn:hover {
+  background: #1e40af;
+}
+
+.rejectBtn {
+  padding: 0.45rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1.5px solid #e2e8f0;
+  background: transparent;
+  color: #ef4444;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rejectBtn:hover {
+  background: #fef2f2;
+}
+
+.viewProfileBtn {
+  padding: 0.45rem 0.9rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1.5px solid #1e3a8a;
+  background: transparent;
+  color: #1e3a8a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.viewProfileBtn:hover {
+  background: #eff6ff;
+}
+
+.connectedBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #10b981;
+  padding: 0.3rem 0.7rem;
+  background: #ecfdf5;
+  border-radius: 50px;
+  border: 1px solid #a7f3d0;
+}
+
+.pendingBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f59e0b;
+  padding: 0.3rem 0.7rem;
+  background: #fffbeb;
+  border-radius: 50px;
+  border: 1px solid #fcd34d;
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  color: #94a3b8;
+  text-align: center;
+  gap: 0.8rem;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+}
+
+.emptyState p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.discoverBtn {
+  padding: 0.55rem 1.4rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  background: #1e3a8a;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.discoverBtn:hover {
+  background: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .statsBar {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .connectionCard {
+    flex-wrap: wrap;
+  }
+
+  .cardActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
