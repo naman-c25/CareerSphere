@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const clientServer = axios.create({
-    baseURL: "http://localhost:9090",
+  baseURL: "https://careersphere-354l.onrender.com" || "http://localhost:9090",
 });
 
 export { clientServer };
