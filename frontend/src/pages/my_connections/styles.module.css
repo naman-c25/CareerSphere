@@ -18,40 +18,42 @@
 .pageTitle {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #e8edf5;
   margin: 0;
+}
+
+.pageTitle span {
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .pageSubtitle {
   font-size: 0.9rem;
-  color: #64748b;
+  color: #556080;
   margin: 0.3rem 0 0;
 }
 
 /* Toasts */
 .successToast {
-  background: #10b981;
-  color: #ffffff;
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
   padding: 0.65rem 1.2rem;
   border-radius: 8px;
   text-align: center;
   font-size: 0.85rem;
-  animation: fadeIn 0.2s ease;
 }
 
 .errorToast {
-  background: #fef2f2;
+  background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(239, 68, 68, 0.2);
   padding: 0.65rem 1.2rem;
   border-radius: 8px;
   text-align: center;
   font-size: 0.85rem;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Stats Bar */
@@ -62,26 +64,35 @@
 }
 
 .statCard {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  background: #0f1623;
+  border-radius: 14px;
+  border: 1px solid #1e2d47;
   padding: 1.1rem;
   text-align: center;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.statCard:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
 }
 
 .statNum {
   font-size: 1.6rem;
   font-weight: 700;
-  color: #1e3a8a;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .statLabel {
   font-size: 0.75rem;
-  color: #64748b;
+  color: #556080;
   font-weight: 500;
 }
 
@@ -89,9 +100,9 @@
 .tabs {
   display: flex;
   gap: 0;
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
+  background: #0f1623;
+  border-radius: 12px;
+  border: 1px solid #1e2d47;
   padding: 0.4rem;
   overflow: hidden;
 }
@@ -102,10 +113,10 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.82rem;
   font-weight: 500;
-  color: #64748b;
+  color: #556080;
   background: none;
   border: none;
-  border-radius: 7px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
   display: flex;
@@ -115,12 +126,13 @@
 }
 
 .tab:hover {
-  background: #f1f5f9;
+  background: rgba(59, 130, 246, 0.08);
+  color: #8b9ab5;
 }
 
 .activeTab {
-  background: #eff6ff;
-  color: #1e3a8a;
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
   font-weight: 700;
 }
 
@@ -137,12 +149,12 @@
 
 /* Tab Content */
 .tabContent {
-  background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e2e8f0;
+  background: #0f1623;
+  border-radius: 14px;
+  border: 1px solid #1e2d47;
   padding: 1.2rem;
   min-height: 300px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 /* Card Grid */
@@ -159,14 +171,14 @@
   gap: 1rem;
   padding: 0.9rem 1rem;
   border-radius: 10px;
-  border: 1px solid #f1f5f9;
-  background: #f8fafc;
+  border: 1px solid #1a2335;
+  background: #131d2e;
   transition: background 0.15s, border-color 0.15s;
 }
 
 .connectionCard:hover {
-  background: #f1f5f9;
-  border-color: #e2e8f0;
+  background: #1a2540;
+  border-color: #1e2d47;
 }
 
 .cardAvatar {
@@ -176,12 +188,13 @@
   object-fit: cover;
   cursor: pointer;
   flex-shrink: 0;
-  background: #dbeafe;
+  background: #1e2d47;
   transition: transform 0.15s;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
 }
 
 .cardAvatar:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .cardInfo {
@@ -192,7 +205,7 @@
 .cardName {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #e8edf5;
   margin: 0;
   cursor: pointer;
   white-space: nowrap;
@@ -202,12 +215,12 @@
 }
 
 .cardName:hover {
-  color: #1e3a8a;
+  color: #3b82f6;
 }
 
 .cardUsername {
   font-size: 0.75rem;
-  color: #94a3b8;
+  color: #556080;
   margin: 0.1rem 0 0;
 }
 
@@ -224,15 +237,17 @@
   font-size: 0.78rem;
   font-weight: 600;
   border: none;
-  background: #1e3a8a;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
   color: #ffffff;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: opacity 0.15s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
 }
 
 .acceptBtn:hover {
-  background: #1e40af;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .rejectBtn {
@@ -240,7 +255,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
-  border: 1.5px solid #e2e8f0;
+  border: 1.5px solid rgba(239, 68, 68, 0.3);
   background: transparent;
   color: #ef4444;
   border-radius: 6px;
@@ -249,7 +264,7 @@
 }
 
 .rejectBtn:hover {
-  background: #fef2f2;
+  background: rgba(239, 68, 68, 0.1);
 }
 
 .viewProfileBtn {
@@ -257,16 +272,16 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.78rem;
   font-weight: 600;
-  border: 1.5px solid #1e3a8a;
+  border: 1.5px solid #3b82f6;
   background: transparent;
-  color: #1e3a8a;
+  color: #3b82f6;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.15s;
 }
 
 .viewProfileBtn:hover {
-  background: #eff6ff;
+  background: rgba(59, 130, 246, 0.1);
 }
 
 .connectedBadge {
@@ -274,9 +289,9 @@
   font-weight: 700;
   color: #10b981;
   padding: 0.3rem 0.7rem;
-  background: #ecfdf5;
+  background: rgba(16, 185, 129, 0.1);
   border-radius: 50px;
-  border: 1px solid #a7f3d0;
+  border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .pendingBadge {
@@ -284,9 +299,9 @@
   font-weight: 700;
   color: #f59e0b;
   padding: 0.3rem 0.7rem;
-  background: #fffbeb;
+  background: rgba(245, 158, 11, 0.1);
   border-radius: 50px;
-  border: 1px solid #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.25);
 }
 
 /* Empty State */
@@ -296,7 +311,7 @@
   align-items: center;
   justify-content: center;
   padding: 3rem 2rem;
-  color: #94a3b8;
+  color: #556080;
   text-align: center;
   gap: 0.8rem;
 }
@@ -316,15 +331,17 @@
   font-size: 0.85rem;
   font-weight: 600;
   border: none;
-  background: #1e3a8a;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
   color: #ffffff;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: opacity 0.15s, transform 0.1s;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
 
 .discoverBtn:hover {
-  background: #1e40af;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 /* Responsive */

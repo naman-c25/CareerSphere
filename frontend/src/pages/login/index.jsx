@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { loginUser, registerUser } from '@/config/redux/action/authAction'
 import { reset } from '@/config/redux/reducer/authReducer'
 import styles from "./style.module.css"
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function LoginComponent() {
   const [isLogin, setIsLogin] = useState(true)
@@ -53,63 +54,90 @@ export default function LoginComponent() {
   return (
     <UserLayout>
       <div className={styles.container}>
-        <div className={styles.card}>
-
-          <div className={styles.formPanel}>
+        <motion.div
+          className={styles.card}
+          initial={{ opacity: 0, y: 40, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.div
+            className={styles.formPanel}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
             <div className={styles.tabs}>
-              <button
-                className={`${styles.tab} ${isLogin ? styles.activeTab : ''}`}
-                onClick={() => handleTabSwitch(true)}
-                type="button"
-              >
-                Login
-              </button>
-              <button
-                className={`${styles.tab} ${!isLogin ? styles.activeTab : ''}`}
-                onClick={() => handleTabSwitch(false)}
-                type="button"
-              >
-                Sign Up
-              </button>
+              {["Login", "Sign Up"].map((label, i) => {
+                const active = i === 0 ? isLogin : !isLogin
+                return (
+                  <motion.button
+                    key={label}
+                    className={`${styles.tab} ${active ? styles.activeTab : ''}`}
+                    onClick={() => handleTabSwitch(i === 0)}
+                    type="button"
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    {label}
+                  </motion.button>
+                )
+              })}
             </div>
 
-            <h2 className={styles.title}>{isLogin ? 'Login' : 'Sign Up'}</h2>
+            <motion.h2
+              className={styles.title}
+              key={isLogin ? "login" : "signup"}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isLogin ? 'Welcome Back' : 'Create Account'}
+            </motion.h2>
 
             <form onSubmit={handleSubmit} className={styles.form}>
-              {!isLogin && (
-                <div className={styles.row}>
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    value={form.username}
-                    onChange={handleChange}
-                    className={styles.input}
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    className={styles.input}
-                    required
-                  />
-                </div>
-              )}
+              <AnimatePresence>
+                {!isLogin && (
+                  <motion.div
+                    className={styles.row}
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      value={form.username}
+                      onChange={handleChange}
+                      className={styles.input}
+                      required
+                    />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full Name"
+                      value={form.name}
+                      onChange={handleChange}
+                      className={styles.input}
+                      required
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-              <input
+              <motion.input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Email address"
                 value={form.email}
                 onChange={handleChange}
                 className={styles.input}
                 required
+                whileFocus={{ scale: 1.01 }}
+                transition={{ duration: 0.15 }}
               />
 
-              <input
+              <motion.input
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -117,24 +145,44 @@ export default function LoginComponent() {
                 onChange={handleChange}
                 className={styles.input}
                 required
+                whileFocus={{ scale: 1.01 }}
+                transition={{ duration: 0.15 }}
               />
 
-              {authState.isError && (
-                <p className={styles.error}>{authState.message}</p>
-              )}
-              {authState.isSuccess && !authState.loggedIn && (
-                <p className={styles.success}>{authState.message}</p>
-              )}
+              <AnimatePresence>
+                {authState.isError && (
+                  <motion.p
+                    className={styles.error}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    ✕ {authState.message}
+                  </motion.p>
+                )}
+                {authState.isSuccess && !authState.loggedIn && (
+                  <motion.p
+                    className={styles.success}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    ✓ {authState.message}
+                  </motion.p>
+                )}
+              </AnimatePresence>
 
-              <button
+              <motion.button
                 type="submit"
                 className={styles.submitBtn}
                 disabled={authState.isLoading}
+                whileHover={{ scale: authState.isLoading ? 1 : 1.02 }}
+                whileTap={{ scale: authState.isLoading ? 1 : 0.97 }}
               >
                 {authState.isLoading
-                  ? isLogin ? 'Logging in...' : 'Creating account...'
-                  : isLogin ? 'Login' : 'Sign Up'}
-              </button>
+                  ? (isLogin ? 'Logging in...' : 'Creating account...')
+                  : (isLogin ? 'Login →' : 'Sign Up →')}
+              </motion.button>
             </form>
 
             <p className={styles.switchText}>
@@ -146,14 +194,43 @@ export default function LoginComponent() {
                 {isLogin ? 'Sign Up' : 'Login'}
               </span>
             </p>
-          </div>
+          </motion.div>
 
-          <div className={styles.bluePanel}>
-            <h2 className={styles.panelTitle}>Career Sphere</h2>
+          <motion.div
+            className={styles.bluePanel}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <motion.div
+              className={styles.panelIcon}
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              🌐
+            </motion.div>
+            <h2 className={styles.panelTitle}>CareerSphere</h2>
             <p className={styles.panelSub}>Connect. Grow. Succeed.</p>
-          </div>
-
-        </div>
+            <div className={styles.panelFeatures}>
+              {[
+                { icon: "✦", text: "Real professional stories" },
+                { icon: "✦", text: "Genuine connections" },
+                { icon: "✦", text: "No bluffs, just truth" },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  className={styles.panelFeatureItem}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 + i * 0.1 }}
+                >
+                  <span>{item.icon}</span>
+                  <span>{item.text}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </UserLayout>
   )

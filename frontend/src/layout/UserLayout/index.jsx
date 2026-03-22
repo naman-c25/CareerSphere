@@ -3,6 +3,7 @@ import styles from "./styles.module.css";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "@/config/redux/reducer/authReducer";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function UserLayout({ children }) {
   const router = useRouter();
@@ -30,56 +31,78 @@ export default function UserLayout({ children }) {
   return (
     <>
       <nav className={styles.navbar}>
-        <div className={styles.brand} onClick={() => router.push("/")}>
+        <motion.div
+          className={styles.brand}
+          onClick={() => router.push("/")}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+        >
           CareerSphere
-        </div>
+        </motion.div>
 
         {isLoggedIn ? (
           <>
             <div className={styles.navLinks}>
               {navLinks.map((link) => (
-                <div
+                <motion.div
                   key={link.path}
                   className={`${styles.navLink} ${router.pathname === link.path ? styles.activeLink : ""}`}
                   onClick={() => router.push(link.path)}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   {link.label}
-                </div>
+                </motion.div>
               ))}
             </div>
 
             <div className={styles.navRight}>
-              <div
+              <motion.div
                 className={styles.profileBtn}
                 onClick={() => setMenuOpen((prev) => !prev)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <div className={styles.avatarCircle}>Me</div>
                 <span className={styles.chevron}>{menuOpen ? "▲" : "▼"}</span>
-              </div>
+              </motion.div>
 
-              {menuOpen && (
-                <div className={styles.dropdownMenu}>
-                  <div
-                    className={styles.dropdownItem}
-                    onClick={() => { setMenuOpen(false); router.push("/dashboard"); }}
+              <AnimatePresence>
+                {menuOpen && (
+                  <motion.div
+                    className={styles.dropdownMenu}
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
                   >
-                    My Profile
-                  </div>
-                  <div className={styles.dropdownDivider} />
-                  <div
-                    className={`${styles.dropdownItem} ${styles.dropdownLogout}`}
-                    onClick={() => { setMenuOpen(false); handleLogout(); }}
-                  >
-                    Logout
-                  </div>
-                </div>
-              )}
+                    <div
+                      className={styles.dropdownItem}
+                      onClick={() => { setMenuOpen(false); router.push("/dashboard"); }}
+                    >
+                      My Profile
+                    </div>
+                    <div className={styles.dropdownDivider} />
+                    <div
+                      className={`${styles.dropdownItem} ${styles.dropdownLogout}`}
+                      onClick={() => { setMenuOpen(false); handleLogout(); }}
+                    >
+                      Logout
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </>
         ) : (
-          <div className={styles.loginBtn} onClick={() => router.push("/login")}>
+          <motion.div
+            className={styles.loginBtn}
+            onClick={() => router.push("/login")}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+          >
             Sign In
-          </div>
+          </motion.div>
         )}
       </nav>
       <div className={styles.pageContent}>{children}</div>

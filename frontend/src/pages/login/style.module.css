@@ -3,8 +3,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f5f0eb;
+  background: linear-gradient(135deg, #070b14 0%, #0f1623 60%, #0a1225 100%);
   padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .card {
@@ -12,16 +36,20 @@
   width: 100%;
   max-width: 900px;
   min-height: 520px;
-  border-radius: 14px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 /* ---- LEFT FORM PANEL ---- */
 
 .formPanel {
   flex: 1;
-  background: #ffffff;
+  background: #0f1623;
+  border: 1px solid #1e2d47;
+  border-right: none;
   padding: 3rem 2.8rem;
   display: flex;
   flex-direction: column;
@@ -39,7 +67,7 @@
   border: none;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #9ca3af;
+  color: #556080;
   cursor: pointer;
   padding: 0.3rem 0;
   border-bottom: 2px solid transparent;
@@ -47,15 +75,19 @@
   font-family: "Poppins", sans-serif;
 }
 
+.tab:hover {
+  color: #8b9ab5;
+}
+
 .activeTab {
-  color: #1e3a8a;
-  border-bottom: 2px solid #1e3a8a;
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
 }
 
 .title {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #111827;
+  color: #e8edf5;
   margin-bottom: 1.6rem;
   font-family: "Poppins", sans-serif;
 }
@@ -74,46 +106,49 @@
 .input {
   width: 100%;
   padding: 0.72rem 1rem;
-  border: 1.5px solid #e5e7eb;
+  border: 1.5px solid #1e2d47;
   border-radius: 8px;
   font-size: 0.92rem;
-  color: #374151;
+  color: #e8edf5;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
   font-family: "Poppins", sans-serif;
-  background: #ffffff;
+  background: #131d2e;
 }
 
 .input:focus {
-  border-color: #1e3a8a;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .input::placeholder {
-  color: #9ca3af;
+  color: #556080;
 }
 
 .submitBtn {
   width: 100%;
   padding: 0.75rem;
-  background-color: #e5e7eb;
-  color: #374151;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.15s;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
   font-family: "Poppins", sans-serif;
   margin-top: 0.4rem;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.25);
 }
 
 .submitBtn:hover:not(:disabled) {
-  background-color: #d1d5db;
+  opacity: 0.9;
   transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35);
 }
 
 .submitBtn:disabled {
-  opacity: 0.65;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -121,33 +156,47 @@
   color: #ef4444;
   font-size: 0.83rem;
   font-family: "Poppins", sans-serif;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
 }
 
 .success {
   color: #10b981;
   font-size: 0.83rem;
   font-family: "Poppins", sans-serif;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
 }
 
 .switchText {
   margin-top: 1.2rem;
   font-size: 0.85rem;
-  color: #6b7280;
+  color: #556080;
   font-family: "Poppins", sans-serif;
 }
 
 .switchLink {
-  color: #1e3a8a;
+  color: #3b82f6;
   font-weight: 600;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
+  transition: color 0.15s;
 }
 
-/* ---- RIGHT BLUE PANEL ---- */
+.switchLink:hover {
+  color: #60a5fa;
+}
+
+/* ---- RIGHT PANEL ---- */
 
 .bluePanel {
   flex: 1;
-  background-color: #1e3d8b;
+  background: linear-gradient(145deg, #0d1b35 0%, #1a2a5e 50%, #0d1b35 100%);
+  border: 1px solid #1e2d47;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -155,6 +204,37 @@
   color: #ffffff;
   padding: 3rem 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bluePanel::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bluePanel::after {
+  content: "";
+  position: absolute;
+  bottom: 15%;
+  right: 15%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.panelIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .panelTitle {
@@ -163,13 +243,47 @@
   font-family: "Poppins", sans-serif;
   margin-bottom: 0.6rem;
   letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #60a5fa, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
 }
 
 .panelSub {
   font-size: 1rem;
-  opacity: 0.75;
+  opacity: 0.7;
   font-family: "Poppins", sans-serif;
   letter-spacing: 0.3px;
+  color: #8b9ab5;
+  position: relative;
+  z-index: 1;
+}
+
+.panelFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.panelFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #8b9ab5;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.panelFeatureItem span:first-child {
+  font-size: 1rem;
 }
 
 /* ---- RESPONSIVE ---- */
