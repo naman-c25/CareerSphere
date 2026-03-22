@@ -8,7 +8,7 @@ import { resetPostState } from "@/config/redux/reducer/postReducer";
 import styles from "./styles.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BASE_URL = "http://localhost:9090";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9090";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },

@@ -7,7 +7,7 @@ import { resetProfileState } from "@/config/redux/reducer/profileReducer";
 import styles from "./styles.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-const BASE_URL = "http://localhost:9090";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:9090";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30, scale: 0.95 },
